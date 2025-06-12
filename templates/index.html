@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Boston House Price Predictor</title>
+    <style>
+        /* Animate on load */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            60% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #dfe9f3, #ffffff);
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 60px auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2d4d8c;
+            margin-bottom: 30px;
+            animation: fadeIn 1.4s ease-in-out;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 30px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2d4d8c;
+            outline: none;
+            background-color: #fff;
+            box-shadow: 0 0 5px #2d4d8c33;
+        }
+
+        .submit-row {
+            grid-column: 1 / -1;
+            text-align: center;
+        }
+
+        input[type="submit"] {
+            background-color: #2d4d8c;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #d40979;
+            transform: scale(1.03);
+        }
+
+        h3 {
+            text-align: center;
+            color: #006400;
+            margin-top: 30px;
+            animation: bounceIn 0.7s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Boston House Price Predictor By Lincoln Chatikobo</h2>
+        <h3>After filling all form fields and submit just check Below the Predict button to see the results</h3>
+        <form action="/predict" method="post">
+            <input type="text" name="crim" placeholder="CRIM (Crime rate)">
+            <input type="text" name="zn" placeholder="ZN (Residential land)">
+            <input type="text" name="indus" placeholder="INDUS (Industrial area)">
+            <input type="text" name="chas" placeholder="CHAS (Charles River dummy)">
+            <input type="text" name="nox" placeholder="NOX (Nitric oxides concentration)">
+            <input type="text" name="rm" placeholder="RM (Average rooms)">
+            <input type="text" name="age" placeholder="AGE (Old units)">
+            <input type="text" name="dis" placeholder="DIS (Distance to centers)">
+            <input type="text" name="rad" placeholder="RAD (Highway access)">
+            <input type="text" name="tax" placeholder="TAX (Tax rate)">
+            <input type="text" name="ptratio" placeholder="PTRATIO (Pupil-teacher ratio)">
+            <input type="text" name="b" placeholder="B (Proportion of blacks)">
+            <input type="text" name="lstat" placeholder="LSTAT (% lower status)">
+            <div class="submit-row">
+                <input type="submit" value="Predict">
+            </div>
+        </form>
+
+        {% if prediction_text %}
+            <h3>{{ prediction_text }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
